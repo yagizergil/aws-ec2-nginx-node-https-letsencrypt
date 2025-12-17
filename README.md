@@ -19,9 +19,6 @@ Nginx (Reverse Proxy + TLS Termination)
 Node.js (Express)
 127.0.0.1:3000
 
-yaml
-Kodu kopyala
-
 ---
 
 ## Key Design Decisions (WHY)
@@ -121,8 +118,7 @@ server {
 Let’s Encrypt (ACME HTTP-01)
 Certificate obtained using webroot method:
 
-bash
-Kodu kopyala
+
 sudo certbot certonly \
   --webroot \
   -w /var/www/letsencrypt \
@@ -132,20 +128,16 @@ Managed by systemd timer
 
 Zero-downtime renewal
 
-bash
-Kodu kopyala
+
 sudo certbot renew --dry-run
 Node.js (Reverse Proxy Awareness)
 To correctly detect HTTPS behind Nginx:
 
-js
-Kodu kopyala
+
 app.set('trust proxy', true);
 This prevents incorrect HTTP assumptions and browser security warnings.
 
 Verification
-bash
-Kodu kopyala
 curl -I http://api.vokario.com
 # 301 → HTTPS
 
